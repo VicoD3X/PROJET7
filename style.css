@@ -3,6 +3,8 @@ body {
     margin: 0;
 }
 
+/* GESTION DU HEADER EN CSS */
+
 header {
     display: flex;
     position: relative;
@@ -33,16 +35,18 @@ header {
 }
 
 
-barreDeRecherche {
+.barreDeRecherche {
     display: flex;
     align-items: center;
-    max-width: 300px;
+    max-width: 450px;
 }
 
 .barreDeRecherche input[type="text"] {
     padding: 8px;
     border: 1px solid #ccc;
     border-radius: 4px 0 0 4px;
+    width: 390px;
+    font-size: 30px;
 }
 
 .barreDeRecherche button {
@@ -51,4 +55,33 @@ barreDeRecherche {
     border: 1px solid #ccc;
     border-radius: 0 4px 4px 0;
     cursor: pointer;
+    font-size: 30px;
+}
+
+
+
+
+
+
+/* GESTION DE LA PAGE EN CSS */
+
+
+.menus-deroulants select {
+    padding: 30px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    margin-right: 15px;
+    margin-left: 50px;
+    font-size: 25px;
+}
+
+.menus-deroulants select:focus {
+    outline: none;
+    border-color: #0066ff;
+    /* Couleur de la bordure lorsqu'il est en focus */
+}
+
+.menus-deroulants select option:first-child {
+    color: #999;
+    /* Couleur du texte pour l'option par défaut */
 }
