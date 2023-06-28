@@ -110,7 +110,7 @@ header {
     margin-bottom: 30px;
 }
 
-.oneCard {
+.oneCardRecette {
     position: relative;
     width: 480px;
     height: 900px;
@@ -163,6 +163,13 @@ header {
 }
 
 .cardLightTitre {
+    color: grey;
+    font-weight: 300;
+    font-size: 17px;
+    width: 20px;
+}
+
+.cardLightTitreIngredient {
     color: grey;
     font-weight: 300;
     font-size: 17px;
