@@ -1,7 +1,7 @@
 body {
     font-family: "Maven Pro", Arial, Helvetica, sans-serif;
     margin: 0;
-    background-color: #eeeeee;
+    background-color: #c4c4c4;
 }
 
 /* GESTION DU HEADER EN CSS */
@@ -67,34 +67,162 @@ header {
 
 /* GESTION DE LA PAGE EN CSS */
 
-.menus-deroulants {
-    display: flex;
-    flex-direction: row;
+
+
+
+
+
+
+
+.dropdown {
     position: relative;
-    margin-bottom: 50px;
-}
-
-.menus-deroulants select {
-    padding: 30px;
-    border: 1px solid #ccc;
-    border-radius: 10px;
-    margin-right: 15px;
+    display: inline-block;
+    margin-bottom: 60px;
+    margin-right: 20px;
     margin-left: 50px;
-    font-size: 25px;
 }
 
-.menus-deroulants select:focus {
-    outline: none;
-    border-color: #0066ff;
+.dropdown-btnIngredient {
+    background-color: #ffffff;
+    color: #333;
+    padding: 0px 10px;
+    border-radius: 4px;
+    cursor: pointer;
+    width: 150px;
+    height: 40px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-weight: 500;
 }
 
-.menus-deroulants select option:first-child {
-    color: #999;
+
+
+.dropdown-btnAppareils {
+    background-color: #ffffff;
+    color: #333;
+    padding: 0px 10px;
+    border-radius: 4px;
+    cursor: pointer;
+    width: 150px;
+    height: 40px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-weight: 500;
+}
+
+.dropdown-btnUstensiles {
+    background-color: #ffffff;
+    color: #333;
+    padding: 0px 10px;
+    border-radius: 4px;
+    cursor: pointer;
+    width: 150px;
+    height: 40px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-weight: 500;
+}
+
+
+.dropdown-content {
+    display: none;
+    width: 146px;
+    position: absolute;
+    top: 95%;
+    left: 0;
+    background-color: #fff;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 0 0 4px 4px;
+    padding: 12px;
+    z-index: 1;
+    cursor: pointer;
+    max-height: 200px;
+    overflow-y: auto;
+}
+
+.btn-rounded {
+    border-radius: 4px 4px 0 0;
+}
+
+
+
+.search-bar-menu {
+    height: 30px;
+    width: 140px;
+}
+
+.dropdown-content .option {
+    color: #333;
+    padding: 8px 12px;
+    transition: background-color 0.2s ease;
+}
+
+.dropdown-content .option:hover {
+    background-color: #f1f1f1;
+}
+
+.dropdown.open .dropdown-content {
+    display: block;
+}
+
+.dropdown .arrow {
+    margin-left: 5px;
+    transition: transform 0.2s ease;
+}
+
+.dropdown.open .arrow {
+    transform: rotate(180deg);
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.recettesContainer {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    width: 100%;
+    height: auto;
 }
 
 .textTotalRecettes {
     position: absolute;
-    top: 0;
+    top: 700px;
     right: 0;
     margin-top: 30px;
     font-size: 25px;
@@ -105,7 +233,6 @@ header {
     display: flex;
     flex-wrap: wrap;
     flex-direction: row;
-    width: 100%;
     height: auto;
     margin-bottom: 30px;
 }
@@ -183,37 +310,46 @@ header {
     font-size: 16px;
 }
 
+
+
+/* ZONE A PATCH */
+
 .recetteIngredient {
     position: relative;
-    display: flex;
-    width: 90%;
-    height: 35%;
-    margin-left: 15px;
+    width: 500px;
+    height: 500px;
 }
 
 .lesIngredients {
     display: flex;
     position: absolute;
-    flex-direction: row;
-    flex-wrap: wrap;
-    justify-content: space-around;
-    width: 100%;
+    width: 300px;
     height: 105%;
     top: 15%;
 }
 
 .oneIngredient {
-    width: 150px;
-    height: 90px;
-    padding-right: 60px;
+    width: 500px;
+    height: 300px;
+}
+
+div.detailIngredient {
+    display: flex;
+    width: 400px;
+    height: 200px;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between;
 }
 
 .titleIngredient {
     font-weight: 500;
     font-size: 17px;
+    color: black;
 }
 
 .detailIngredient {
     color: grey;
     margin-top: -10px;
 }
+
