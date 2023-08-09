@@ -30,12 +30,8 @@ function getRecetteHtml(recette) {
     let recettePara = document.createElement("p")
 
     //Création des elements du contenant des ingredients d'une recette
-    let recetteIngredient = document.createElement("div")
     let cardLightTitreIngredient = document.createElement("p")
-    let lesIngredients = document.createElement("div")
-    let oneIngredient = document.createElement("div")
-    let titleIngredient = document.createElement("div")
-    let detailIngredient = document.createElement("div")
+    let recetteIngredient = document.createElement("div")
 
 
 
@@ -45,29 +41,33 @@ function getRecetteHtml(recette) {
     // ----------------------------------------------
 
     //elements header d'une recette
-    timingTitleCard.innerText = recette.time
+    timingTitleCard.innerText = recette.time + "min"
     oneCardPicture.setAttribute("src", "Pictures/" + recette.image)
     cardTitre.innerText = recette.name
+    cardLightTitre.innerText = "RECETTE"
 
     //elements du contenant d'une recette
     recettePara.innerText = recette.description
 
     //elements du contenant des ingredients d'une recette
     // A FAIRE 
+    cardLightTitreIngredient.innerText = "INGREDIENTS"
     for (let i = 0; i < recette.ingredients.length; i++) {
         const ingredient = recette.ingredients[i];
         if (ingredient.unit == undefined) {
             ingredient.unit = ''
         }
         let ingredientChaine = ` 
+        <div class= 'oneIngredient'>
             <p class='titleIngredient'>
                 ${ingredient.ingredient}
             </p>
             <p class='detailIngredient'>
                 ${ingredient.quantity} ${ingredient.unit}
             </p>
+        </div>    
         `
-        detailIngredient.innerHTML += ingredientChaine
+        recetteIngredient.innerHTML += ingredientChaine
 
     }
     //titleIngredient.innerText = "crée ici par la double boucle"
@@ -92,12 +92,8 @@ function getRecetteHtml(recette) {
     recettePara.classList.add("recettePara")
 
     //Création des elements du contenant des ingredients d'une recette
-    recetteIngredient.classList.add("recetteIngredient")
     cardLightTitreIngredient.classList.add("cardLightTitreIngredient")
-    lesIngredients.classList.add("lesIngredients")
-    oneIngredient.classList.add("oneIngredient")
-    titleIngredient.classList.add("titleIngredient")
-    detailIngredient.classList.add("detailIngredient")
+    recetteIngredient.classList.add("recetteIngredient")
 
 
 
@@ -112,12 +108,8 @@ function getRecetteHtml(recette) {
     oneCardRecette.appendChild(recetteText)
     recetteText.appendChild(cardLightTitre)
     recetteText.appendChild(recettePara)
+    oneCardRecette.appendChild(cardLightTitreIngredient)
     oneCardRecette.appendChild(recetteIngredient)
-    recetteIngredient.appendChild(cardLightTitreIngredient)
-    recetteIngredient.appendChild(lesIngredients)
-    lesIngredients.appendChild(oneIngredient)
-    oneIngredient.appendChild(titleIngredient)
-    oneIngredient.appendChild(detailIngredient)
 
 
 
@@ -137,6 +129,7 @@ afficherListeRecettes(getListeRecette())
 
 
 // -------------- GESTION MENU DEROULANT ----------------------
+// modifié var en let
 
 
 
@@ -145,14 +138,17 @@ window.onload = function MenuDeroulantGestion() {
     var appareilsBtn = document.querySelector('.dropdown-btnAppareils');
     var ustensilesBtn = document.querySelector('.dropdown-btnUstensiles');
 
+    let listeIngredientCliquer = []
+    let listeAppareilCliquer = []
+    let listeUstensilesCliquer = []
 
 
 
     ingredientBtn.addEventListener('click', function (event) {
-        var dropdownContent = this.nextElementSibling; //DAVID (?)
-        var arrowIcon = this.querySelector('i'); //DAVID (?)
+        var dropdownContent = this.nextElementSibling; 
+        var arrowIcon = this.querySelector('i'); 
 
-        dropdownContent.style.display = dropdownContent.style.display === 'block' ? 'none' : 'block'; //DAVID (?)
+        dropdownContent.style.display = dropdownContent.style.display === 'block' ? 'none' : 'block'; 
         arrowIcon.classList.toggle('fa-chevron-down');
         arrowIcon.classList.toggle('fa-chevron-up');
 
@@ -189,19 +185,7 @@ window.onload = function MenuDeroulantGestion() {
             }
         }
 
-        var dropdownContentIngredient = document.getElementById('dropdown-content-ingredient');
 
-        // Fermer le menu lorsque l'utilisateur clique sur une option
-        dropdownContentIngredient.addEventListener('click', function (event) {
-            var target = event.target;
-            if (target.classList.contains('option')) {
-                dropdownContentIngredient.style.display = 'none';
-                var ingredientArrowIcon = ingredientBtn.querySelector('i');
-                ingredientArrowIcon.classList.remove('fa-chevron-up');
-                ingredientArrowIcon.classList.add('fa-chevron-down');
-                ingredientBtn.classList.remove('btn-rounded');
-            }
-        });
 
         var searchBarIngredients = document.getElementById("search-bar-menu-ingredient")
         searchBarIngredients.addEventListener('click', function (event) {
@@ -228,6 +212,28 @@ window.onload = function MenuDeroulantGestion() {
             updateDropdown(this.value);
         });
     });
+
+
+
+    var dropdownContentIngredient = document.getElementById('dropdown-content-ingredient');
+
+        // Fermer le menu lorsque l'utilisateur clique sur une option
+        dropdownContentIngredient.addEventListener('click', function (event) {
+            var target = event.target;
+            if (target.classList.contains('option')) {
+                dropdownContentIngredient.style.display = 'none';
+                var ingredientArrowIcon = ingredientBtn.querySelector('i');
+                ingredientArrowIcon.classList.remove('fa-chevron-up');
+                ingredientArrowIcon.classList.add('fa-chevron-down');
+                ingredientBtn.classList.remove('btn-rounded');
+                listeIngredientCliquer.push(target.innerText.trim())
+                console.log(listeIngredientCliquer);
+            }
+        });
+
+
+
+
 
 
 
@@ -271,19 +277,7 @@ window.onload = function MenuDeroulantGestion() {
             }
         }
 
-        var dropdownContentAppareils = document.getElementById('dropdown-content-appareils');
-
-        // Fermer le menu lorsque l'utilisateur clique sur une option
-        dropdownContentAppareils.addEventListener('click', function (event) {
-            var target = event.target;
-            if (target.classList.contains('option')) {
-                dropdownContentAppareils.style.display = 'none';
-                var appareilsArrowIcon = appareilsBtn.querySelector('i');
-                appareilsArrowIcon.classList.remove('fa-chevron-up');
-                appareilsArrowIcon.classList.add('fa-chevron-down');
-                appareilsBtn.classList.remove('btn-rounded');
-            }
-        });
+      
 
         var searchBarAppareils = document.getElementById("search-bar-menu-appareils")
         searchBarAppareils.addEventListener('click', function (event) {
@@ -310,6 +304,23 @@ window.onload = function MenuDeroulantGestion() {
             updateDropdown(this.value);
         });
     });
+
+
+    var dropdownContentAppareils = document.getElementById('dropdown-content-appareils');
+
+        // Fermer le menu lorsque l'utilisateur clique sur une option
+        dropdownContentAppareils.addEventListener('click', function (event) {
+            var target = event.target;
+            if (target.classList.contains('option')) {
+                dropdownContentAppareils.style.display = 'none';
+                var appareilsArrowIcon = appareilsBtn.querySelector('i');
+                appareilsArrowIcon.classList.remove('fa-chevron-up');
+                appareilsArrowIcon.classList.add('fa-chevron-down');
+                appareilsBtn.classList.remove('btn-rounded');
+                listeAppareilCliquer.push(target.innerText.trim())
+                console.log(listeAppareilCliquer);
+            }
+        });
 
 
 
@@ -356,19 +367,7 @@ window.onload = function MenuDeroulantGestion() {
             }
         }
 
-        var dropdownContentUstensils = document.getElementById('dropdown-content-ustensils');
-
-        // Fermer le menu lorsque l'utilisateur clique sur une option
-        dropdownContentUstensils.addEventListener('click', function (event) {
-            var target = event.target;
-            if (target.classList.contains('option')) {
-                dropdownContentUstensils.style.display = 'none';
-                var ustensilsArrowIcon = ustensilesBtn.querySelector('i');
-                ustensilsArrowIcon.classList.remove('fa-chevron-up');
-                ustensilsArrowIcon.classList.add('fa-chevron-down');
-                ustensilesBtn.classList.remove('btn-rounded');
-            }
-        });
+       
 
         var searchBarUstensils = document.getElementById("search-bar-menu-ustensils")
         searchBarUstensils.addEventListener('click', function (event) {
@@ -396,48 +395,21 @@ window.onload = function MenuDeroulantGestion() {
         });
     });
 
+    var dropdownContentUstensils = document.getElementById('dropdown-content-ustensils');
 
-
-    // searchBarAppareils.addEventListener('click', function (event) {
-    //     event.stopPropagation();
-    // });
-
-    // searchBarUstensiles.addEventListener('click', function (event) {
-    //     event.stopPropagation();
-    // });
-
-
-    // document.addEventListener('click', function (event) {
-    //     var target = event.target;
-
-    //     if (
-    //         !target.matches('.dropdown-btnIngredient') &&
-    //         !target.matches('.dropdown-contentIngredient') &&
-    //         !target.matches('.dropdown-btnAppareils') &&
-    //         !target.matches('.dropdown-contentAppareils') &&
-    //         !target.matches('.dropdown-btnUstensiles') &&
-    //         !target.matches('.dropdown-contentUstensiles') &&
-    //         !target.matches('.option')
-    //     ) {
-    //         ingredientBtn.classList.remove('btn-rounded');
-    //         ingredientBtn.nextElementSibling.style.display = 'none';
-    //         var ingredientArrowIcon = ingredientBtn.querySelector('i');
-    //         ingredientArrowIcon.classList.remove('fa-chevron-up');
-    //         ingredientArrowIcon.classList.add('fa-chevron-down');
-
-    //         appareilsBtn.classList.remove('btn-rounded');
-    //         appareilsBtn.nextElementSibling.style.display = 'none';
-    //         var appareilsArrowIcon = appareilsBtn.querySelector('i');
-    //         appareilsArrowIcon.classList.remove('fa-chevron-up');
-    //         appareilsArrowIcon.classList.add('fa-chevron-down');
-
-    //         ustensilesBtn.classList.remove('btn-rounded');
-    //         ustensilesBtn.nextElementSibling.style.display = 'none';
-    //         var ustensilsArrowIcon = ustensilesBtn.querySelector('i');
-    //         ustensilsArrowIcon.classList.remove('fa-chevron-up');
-    //         ustensilsArrowIcon.classList.add('fa-chevron-down');
-    //     }
-    // });
+    // Fermer le menu lorsque l'utilisateur clique sur une option
+    dropdownContentUstensils.addEventListener('click', function (event) {
+        var target = event.target;
+        if (target.classList.contains('option')) {
+            dropdownContentUstensils.style.display = 'none';
+            var ustensilsArrowIcon = ustensilesBtn.querySelector('i');
+            ustensilsArrowIcon.classList.remove('fa-chevron-up');
+            ustensilsArrowIcon.classList.add('fa-chevron-down');
+            ustensilesBtn.classList.remove('btn-rounded');
+            listeUstensilesCliquer.push(target.innerText.trim())
+            console.log(listeUstensilesCliquer);
+        }
+    });
 };
 
 
