@@ -145,10 +145,10 @@ window.onload = function MenuDeroulantGestion() {
 
 
     ingredientBtn.addEventListener('click', function (event) {
-        var dropdownContent = this.nextElementSibling; 
-        var arrowIcon = this.querySelector('i'); 
+        var dropdownContent = this.nextElementSibling;
+        var arrowIcon = this.querySelector('i');
 
-        dropdownContent.style.display = dropdownContent.style.display === 'block' ? 'none' : 'block'; 
+        dropdownContent.style.display = dropdownContent.style.display === 'block' ? 'none' : 'block';
         arrowIcon.classList.toggle('fa-chevron-down');
         arrowIcon.classList.toggle('fa-chevron-up');
 
@@ -217,19 +217,21 @@ window.onload = function MenuDeroulantGestion() {
 
     var dropdownContentIngredient = document.getElementById('dropdown-content-ingredient');
 
-        // Fermer le menu lorsque l'utilisateur clique sur une option
-        dropdownContentIngredient.addEventListener('click', function (event) {
-            var target = event.target;
-            if (target.classList.contains('option')) {
-                dropdownContentIngredient.style.display = 'none';
-                var ingredientArrowIcon = ingredientBtn.querySelector('i');
-                ingredientArrowIcon.classList.remove('fa-chevron-up');
-                ingredientArrowIcon.classList.add('fa-chevron-down');
-                ingredientBtn.classList.remove('btn-rounded');
+    // Fermer le menu lorsque l'utilisateur clique sur une option
+    dropdownContentIngredient.addEventListener('click', function (event) {
+        var target = event.target;
+        if (target.classList.contains('option')) {
+            dropdownContentIngredient.style.display = 'none';
+            var ingredientArrowIcon = ingredientBtn.querySelector('i');
+            ingredientArrowIcon.classList.remove('fa-chevron-up');
+            ingredientArrowIcon.classList.add('fa-chevron-down');
+            ingredientBtn.classList.remove('btn-rounded');
+            if (!listeIngredientCliquer.includes(target.innerText.trim())) {
                 listeIngredientCliquer.push(target.innerText.trim())
-                console.log(listeIngredientCliquer);
+                afficherOptions()
             }
-        });
+        }
+    });
 
 
 
@@ -277,7 +279,7 @@ window.onload = function MenuDeroulantGestion() {
             }
         }
 
-      
+
 
         var searchBarAppareils = document.getElementById("search-bar-menu-appareils")
         searchBarAppareils.addEventListener('click', function (event) {
@@ -308,19 +310,21 @@ window.onload = function MenuDeroulantGestion() {
 
     var dropdownContentAppareils = document.getElementById('dropdown-content-appareils');
 
-        // Fermer le menu lorsque l'utilisateur clique sur une option
-        dropdownContentAppareils.addEventListener('click', function (event) {
-            var target = event.target;
-            if (target.classList.contains('option')) {
-                dropdownContentAppareils.style.display = 'none';
-                var appareilsArrowIcon = appareilsBtn.querySelector('i');
-                appareilsArrowIcon.classList.remove('fa-chevron-up');
-                appareilsArrowIcon.classList.add('fa-chevron-down');
-                appareilsBtn.classList.remove('btn-rounded');
+    // Fermer le menu lorsque l'utilisateur clique sur une option
+    dropdownContentAppareils.addEventListener('click', function (event) {
+        var target = event.target;
+        if (target.classList.contains('option')) {
+            dropdownContentAppareils.style.display = 'none';
+            var appareilsArrowIcon = appareilsBtn.querySelector('i');
+            appareilsArrowIcon.classList.remove('fa-chevron-up');
+            appareilsArrowIcon.classList.add('fa-chevron-down');
+            appareilsBtn.classList.remove('btn-rounded');
+            if (!listeAppareilCliquer.includes(target.innerText.trim())) {
                 listeAppareilCliquer.push(target.innerText.trim())
-                console.log(listeAppareilCliquer);
+                afficherOptions()
             }
-        });
+        }
+    });
 
 
 
@@ -367,7 +371,7 @@ window.onload = function MenuDeroulantGestion() {
             }
         }
 
-       
+
 
         var searchBarUstensils = document.getElementById("search-bar-menu-ustensils")
         searchBarUstensils.addEventListener('click', function (event) {
@@ -406,10 +410,28 @@ window.onload = function MenuDeroulantGestion() {
             ustensilsArrowIcon.classList.remove('fa-chevron-up');
             ustensilsArrowIcon.classList.add('fa-chevron-down');
             ustensilesBtn.classList.remove('btn-rounded');
-            listeUstensilesCliquer.push(target.innerText.trim())
-            console.log(listeUstensilesCliquer);
+            if (!listeUstensilesCliquer.includes(target.innerText.trim())) {
+                listeUstensilesCliquer.push(target.innerText.trim())
+                afficherOptions()
+            }
         }
     });
+
+    function afficherOptions() {
+        console.log("mise à jour des options");
+        console.log(listeAppareilCliquer);
+        for (let i = 0; i < listeAppareilCliquer.length; i++) {
+            document.getElementById("containDisplayOption")
+            let displayOptionAppareil = document.createElement("div")
+            displayOptionAppareil.classList.add("displayOptionAppareil")
+            containDisplayOption.appendChild(displayOptionAppareil)
+            displayOptionAppareil.innerText = listeAppareilCliquer[i]
+        }
+        console.log(listeIngredientCliquer);
+        console.log(listeUstensilesCliquer);
+    }
+
+
 };
 
 
