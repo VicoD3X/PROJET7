@@ -76,7 +76,7 @@ header {
     font-weight: 100;
 }
 
-.containSearchIcone{
+.containSearchIcone {
     position: absolute;
     display: flex;
     justify-content: center;
@@ -90,7 +90,7 @@ header {
     margin-right: 10px;
 }
 
-.iconeSearchBar{
+.iconeSearchBar {
     font-size: 30px;
     color: white;
 }
@@ -180,7 +180,7 @@ header {
     padding: 12px;
     z-index: 1;
     cursor: pointer;
-    max-height: 200px;  
+    max-height: 200px;
     overflow-y: auto;
     font-family: 'Manrope', sans-serif;
     font-size: 14px;
@@ -219,6 +219,83 @@ header {
 
 .dropdown.open .arrow {
     transform: rotate(180deg);
+}
+
+.containDisplayOption {
+    display: flex;
+    width: 100%;
+    margin-top: -30px;
+}
+
+
+
+.containOptionIngredient {
+    width: 200px;
+    margin-left: 50px;
+    position: relative;
+}
+.displayOptionIngredient {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    width: 150px;
+    height: 40px;
+    padding: 0px 10px;
+    border-radius: 4px;
+    margin-top: 15px;
+    background-color: #ffc400;
+    text-align: left;
+}
+
+
+
+.containOptionAppareils {
+    width: 200px;
+    margin-left: 5px;
+    position: relative;
+}
+.displayOptionAppareil {
+    display: flex;
+    text-align: left;
+    justify-content: center;
+    flex-direction: column;
+    width: 150px;
+    height: 40px;
+    padding: 0px 10px;
+    border-radius: 4px;
+    margin-top: 15px;
+    background-color: #ffc400;
+}
+
+
+
+
+
+.containOptionUstensiles {
+    display: flex;
+    justify-content: left;
+    flex-direction: column;
+    width: 200px;
+    margin-right: 10px;
+}
+.displayOptionUstensiles {
+    display: flex;
+    text-align: left;
+    justify-content: center;
+    flex-direction: column;
+    width: 150px;
+    height: 40px;
+    padding: 0px 10px;
+    border-radius: 4px;
+    margin-top: 15px;
+    background-color: #ffc400;
+}
+
+
+.iconeCroixOption {
+    font-size: 20px;
+    color: red;
+    cursor: pointer;
 }
 
 

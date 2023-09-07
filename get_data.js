@@ -1,5 +1,5 @@
 function getListeRecette() {
-    return recipes;
+  return recipes;
 }
 
 
@@ -20,9 +20,6 @@ function getListeUstensiles() {
       }
     }
   }
-
-  console.log("Liste des ustensiles :");
-  console.log(ustensilesListe);
 }
 
 getListeUstensiles();
@@ -45,10 +42,9 @@ function getListeAppareils() {
     }
   }
 
-  console.log("Liste des appareils :");
-  console.log(appareilsListe);
+  return appareilsListe;
 }
-
+ 
 getListeAppareils();
 
 
@@ -68,9 +64,6 @@ function getIngredients() {
       ingredientsList.push(ingredientName);
     }
   }
-
-  console.log("Liste des ingrédients :");
-  console.log(ingredientsList);
 }
 
 getIngredients();
@@ -99,9 +92,6 @@ function getQuantities() {
       ingredientsQuantities[ingredientName] += ingredientQuantity;
     }
   }
-
-  console.log("Liste des quantités d'ingrédients :");
-  console.log(ingredientsQuantities);
 }
 
 getQuantities();
@@ -125,9 +115,6 @@ function getUnits() {
       unitsList.push(ingredientUnit);
     }
   }
-
-  console.log("Liste des unités d'ingrédients :");
-  console.log(unitsList);
 }
 
 getUnits();
@@ -155,4 +142,3 @@ getUnits();
 
 
 
- 

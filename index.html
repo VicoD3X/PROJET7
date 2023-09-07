@@ -23,6 +23,7 @@
 </head>
 
 <body>
+
   <header>
     <div class="titreCorpo">
       <span>LES PETITS PLATS</span> <i class="fa-regular fa-circle-dot"></i>
@@ -33,7 +34,7 @@
     </div>
 
     <div class="barreDeRecherche">
-      <input type="text" placeholder="Rechercher une recette, un ingrédient...">
+      <input type="text" id="search-bar" class="mainSearchBar" placeholder="Rechercher une recette, un ingrédient...">
       <div class="containSearchIcone">
         <i class=" iconeSearchBar fas fa-search"></i>
       </div>
@@ -73,9 +74,25 @@
 
       </div>
     </div>
-    <div class="containDisplayOption" id="containDisplayOption">
+    <div class="containDisplayOption">
 
-         <!-- GERER VIA JS -->
+
+
+      <div class="containOptionIngredient" id="containOptionIngredient">
+        <!-- GERER VIA JS -->
+        <!-- <i id="iconeCroixOption" class=" iconeCroixOption fa-solid fa-xmark"></i> -->
+      </div>
+
+      <div class="containOptionAppareils" id="containOptionAppareils">
+        <!-- GERER VIA JS -->
+        <!-- <i id="iconeCroixOption" class=" iconeCroixOption fa-solid fa-xmark"></i> -->
+      </div>
+
+      <div class="containOptionUstensiles" id="containOptionUstensiles">
+        <!-- GERER VIA JS -->
+        <!-- <i id="iconeCroixOption" class=" iconeCroixOption fa-solid fa-xmark"></i> -->
+      </div>
+
 
 
     </div>
