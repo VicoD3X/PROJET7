@@ -135,72 +135,72 @@ afficherListeRecettes(getListeRecette())
 
 // -------------- GESTION BARRE DE RECHERCHE PRINCIPAL ----------------------
 
-let searchBar = document.getElementById("search-bar");
-let listeRecette = getListeRecette();
-let listeIngredients = getIngredients();
-
-//TITRE INGREDIENTS ET DESCRIPTION UNIQUEMENT
-//SYNCHRONISER AVEC RECHERCHE
-
-searchBar.addEventListener('input', function (event) {
-    let texteSaisie = event.target.value.toLowerCase();
-
-    // Filtrer les recettes correspondant au texte saisi
-    let recettesFiltrees = listeRecette.filter(recette =>
-        recette.name.toLowerCase().includes(texteSaisie) ||
-        recette.description.toLowerCase().includes(texteSaisie) ||
-        recette.ingredients.some(ingredient => ingredient.ingredient.toLowerCase().includes(texteSaisie)) 
-    );
-
-    console.log(recettesFiltrees);
-    afficherListeRecettes(recettesFiltrees)
-});
-
-
-
-
-
-
-
-// //V2
-
 // let searchBar = document.getElementById("search-bar");
 // let listeRecette = getListeRecette();
 // let listeIngredients = getIngredients();
 
-// // TITRE, INGRÉDIENTS ET DESCRIPTION UNIQUES SEULEMENT
-// // SYNCHRONISER AVEC RECHERCHE
+// //TITRE INGREDIENTS ET DESCRIPTION UNIQUEMENT
+// //SYNCHRONISER AVEC RECHERCHE
 
 // searchBar.addEventListener('input', function (event) {
 //     let texteSaisie = event.target.value.toLowerCase();
 
 //     // Filtrer les recettes correspondant au texte saisi
-//     let recettesFiltrees = [];
-
-//     for (let i = 0; i < listeRecette.length; i++) {
-//         let recette = listeRecette[i];
-//         if (
-//             recette.name.toLowerCase().includes(texteSaisie) ||
-//             recette.description.toLowerCase().includes(texteSaisie)
-//         ) {
-//             recettesFiltrees.push(recette);
-//         } else {
-//             let ingredientsFiltres = recette.ingredients.filter(ingredient =>
-//                 ingredient.ingredient.toLowerCase().includes(texteSaisie)
-//             );
-//             if (ingredientsFiltres.length > 0) {
-//                 recettesFiltrees.push({
-//                     name: recette.name,
-//                     ingredients: ingredientsFiltres,
-//                     description: recette.description,
-//                 });
-//             }
-//         }
-//     }
+//     let recettesFiltrees = listeRecette.filter(recette =>
+//         recette.name.toLowerCase().includes(texteSaisie) ||
+//         recette.description.toLowerCase().includes(texteSaisie) ||
+//         recette.ingredients.some(ingredient => ingredient.ingredient.toLowerCase().includes(texteSaisie)) 
+//     );
 
 //     console.log(recettesFiltrees);
-//     afficherListeRecettes(recettesFiltrees);
+//     afficherListeRecettes(recettesFiltrees)
 // });
+
+
+
+
+
+
+
+//V2
+
+let searchBar = document.getElementById("search-bar");
+let listeRecette = getListeRecette();
+let listeIngredients = getIngredients();
+
+// TITRE, INGRÉDIENTS ET DESCRIPTION UNIQUES SEULEMENT
+// SYNCHRONISER AVEC RECHERCHE
+
+searchBar.addEventListener('input', function (event) {
+    let texteSaisie = event.target.value.toLowerCase();
+
+    // Filtrer les recettes correspondant au texte saisi
+    let recettesFiltrees = [];
+
+    for (let i = 0; i < listeRecette.length; i++) {
+        let recette = listeRecette[i];
+        if (
+            recette.name.toLowerCase().includes(texteSaisie) ||
+            recette.description.toLowerCase().includes(texteSaisie)
+        ) {
+            recettesFiltrees.push(recette);
+        } else {
+            let ingredientsFiltres = recette.ingredients.filter(ingredient =>
+                ingredient.ingredient.toLowerCase().includes(texteSaisie)
+            );
+            if (ingredientsFiltres.length > 0) {
+                recettesFiltrees.push({
+                    name: recette.name,
+                    ingredients: ingredientsFiltres,
+                    description: recette.description,
+                });
+            }
+        }
+    }
+
+    console.log(recettesFiltrees);
+    afficherListeRecettes(recettesFiltrees);
+});
 
 
 
