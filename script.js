@@ -149,12 +149,12 @@ searchBar.addEventListener('input', function (event) {
     let recettesFiltrees = listeRecette.filter(recette =>
         recette.name.toLowerCase().includes(texteSaisie) ||
         recette.description.toLowerCase().includes(texteSaisie) ||
-        recette.ingredients.some(ingredient => ingredient.ingredient.toLowerCase().includes(texteSaisie)) 
+        recette.ingredients.some(ingredient => ingredient.ingredient.toLowerCase().includes(texteSaisie))
     );
 
     console.log(recettesFiltrees);
     afficherListeRecettes(recettesFiltrees)
-});
+}); 
 
 
 
@@ -162,7 +162,7 @@ searchBar.addEventListener('input', function (event) {
 
 
 
-// //V2
+// // //V2
 
 // let searchBar = document.getElementById("search-bar");
 // let listeRecette = getListeRecette();
