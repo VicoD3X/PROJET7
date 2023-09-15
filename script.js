@@ -16,6 +16,8 @@ function afficherListeRecettes(listeRecette) {
         //console.log(displayRecettes);
 
     }
+    let nbRecette = document.getElementById("nbRecette")
+    nbRecette.innerText = listeRecette.length 
 }
 
 
@@ -213,16 +215,16 @@ searchBar.addEventListener('input', function (event) {
 
 
 window.onload = function MenuDeroulantGestion() {
-    var ingredientBtn = document.querySelector('.dropdown-btnIngredient');
-    var appareilsBtn = document.querySelector('.dropdown-btnAppareils');
-    var ustensilesBtn = document.querySelector('.dropdown-btnUstensiles');
+    let ingredientBtn = document.querySelector('.dropdown-btnIngredient');
+    let appareilsBtn = document.querySelector('.dropdown-btnAppareils');
+    let ustensilesBtn = document.querySelector('.dropdown-btnUstensiles');
 
 
 
 
     ingredientBtn.addEventListener('click', function () {
         var dropdownContent = this.nextElementSibling;
-        var arrowIcon = this.querySelector('i');
+        let arrowIcon = this.querySelector('i');
 
         dropdownContent.style.display = dropdownContent.style.display === 'block' ? 'none' : 'block';
         arrowIcon.classList.toggle('fa-chevron-down');
@@ -233,7 +235,7 @@ window.onload = function MenuDeroulantGestion() {
         var dropdownContent = document.getElementById('dropdown-content-ingredient');
         dropdownContent.innerHTML = ''; // Vide le contenu existant
 
-        var inputElementIngredient = document.createElement('input');
+        let inputElementIngredient = document.createElement('input');
         inputElementIngredient.type = 'text';
         inputElementIngredient.placeholder = 'Rechercher...';
         inputElementIngredient.id = 'search-bar-menu-ingredient';
@@ -242,8 +244,8 @@ window.onload = function MenuDeroulantGestion() {
 
 
 
-        var listeRecette = listeRecetteFiltrer;
-        var ingredientsList = []; // Liste des ingrédients
+        let listeRecette = listeRecetteFiltrer;
+        let ingredientsList = []; // Liste des ingrédients
 
         for (let j = 0; j < listeRecette.length; j++) {
             const recette = listeRecette[j];
@@ -295,7 +297,7 @@ window.onload = function MenuDeroulantGestion() {
 
     // Fermer le menu lorsque l'utilisateur clique sur une option
     dropdownContentIngredient.addEventListener('click', function (event) {
-        var target = event.target;
+        let target = event.target;
         if (target.classList.contains('option')) {
             dropdownContentIngredient.style.display = 'none';
             var ingredientArrowIcon = ingredientBtn.querySelector('i');
@@ -322,7 +324,7 @@ window.onload = function MenuDeroulantGestion() {
 
     appareilsBtn.addEventListener('click', function () {
         var dropdownContentAppareils = this.nextElementSibling;
-        var arrowIconAppareils = this.querySelector('i');
+        let arrowIconAppareils = this.querySelector('i');
 
         dropdownContentAppareils.style.display = dropdownContentAppareils.style.display === 'block' ? 'none' : 'block';
         arrowIconAppareils.classList.toggle('fa-chevron-down');
@@ -333,15 +335,15 @@ window.onload = function MenuDeroulantGestion() {
         var dropdownContentAppareils = document.getElementById('dropdown-content-appareils');
         dropdownContentAppareils.innerHTML = ''; // Vide le contenu existant
 
-        var inputElementAppareils = document.createElement('input');
+        let inputElementAppareils = document.createElement('input');
         inputElementAppareils.type = 'text';
         inputElementAppareils.placeholder = 'Rechercher...';
         inputElementAppareils.id = 'search-bar-menu-appareils';
         inputElementAppareils.classList.add("search-bar-menu");
         dropdownContentAppareils.appendChild(inputElementAppareils);
 
-        var listeRecette = listeRecetteFiltrer;
-        var appareilsList = []; // Liste des appareils
+        let listeRecette = listeRecetteFiltrer;
+        let appareilsList = []; // Liste des appareils
 
         for (let j = 0; j < listeRecette.length; j++) {
             const recette = listeRecette[j];
@@ -361,7 +363,7 @@ window.onload = function MenuDeroulantGestion() {
 
 
 
-        var searchBarAppareils = document.getElementById("search-bar-menu-appareils")
+        let searchBarAppareils = document.getElementById("search-bar-menu-appareils")
         searchBarAppareils.addEventListener('click', function (event) {
             event.stopPropagation();
         });
@@ -392,10 +394,10 @@ window.onload = function MenuDeroulantGestion() {
 
     // Fermer le menu lorsque l'utilisateur clique sur une option
     dropdownContentAppareils.addEventListener('click', function (event) {
-        var target = event.target;
+        let target = event.target;
         if (target.classList.contains('option')) {
             dropdownContentAppareils.style.display = 'none';
-            var appareilsArrowIcon = appareilsBtn.querySelector('i');
+            let appareilsArrowIcon = appareilsBtn.querySelector('i');
             appareilsArrowIcon.classList.remove('fa-chevron-up');
             appareilsArrowIcon.classList.add('fa-chevron-down');
             appareilsBtn.classList.remove('btn-rounded');
@@ -420,7 +422,7 @@ window.onload = function MenuDeroulantGestion() {
 
     ustensilesBtn.addEventListener('click', function () {
         var dropdownContentUstensils = this.nextElementSibling;
-        var arrowIconUstensils = this.querySelector('i');
+        let arrowIconUstensils = this.querySelector('i');
 
         dropdownContentUstensils.style.display = dropdownContentUstensils.style.display === 'block' ? 'none' : 'block';
         arrowIconUstensils.classList.toggle('fa-chevron-down');
@@ -431,15 +433,15 @@ window.onload = function MenuDeroulantGestion() {
         var dropdownContentUstensils = document.getElementById('dropdown-content-ustensils');
         dropdownContentUstensils.innerHTML = ''; // Vide le contenu existant
 
-        var inputElementUstensils = document.createElement('input');
+        let inputElementUstensils = document.createElement('input');
         inputElementUstensils.type = 'text';
         inputElementUstensils.placeholder = 'Rechercher...';
         inputElementUstensils.id = 'search-bar-menu-ustensils';
         inputElementUstensils.classList.add("search-bar-menu");
         dropdownContentUstensils.appendChild(inputElementUstensils);
 
-        var listeRecette = listeRecetteFiltrer;
-        var ustensilsList = []; // Liste des ustensiles
+        let listeRecette = listeRecetteFiltrer;
+        let ustensilsList = []; // Liste des ustensiles
 
         for (let j = 0; j < listeRecette.length; j++) {
             const recette = listeRecette[j];
@@ -459,7 +461,7 @@ window.onload = function MenuDeroulantGestion() {
 
 
 
-        var searchBarUstensils = document.getElementById("search-bar-menu-ustensils")
+        let searchBarUstensils = document.getElementById("search-bar-menu-ustensils")
         searchBarUstensils.addEventListener('click', function (event) {
             event.stopPropagation();
         });
@@ -485,7 +487,7 @@ window.onload = function MenuDeroulantGestion() {
         });
     });
 
-    var dropdownContentUstensils = document.getElementById('dropdown-content-ustensils');
+    let dropdownContentUstensils = document.getElementById('dropdown-content-ustensils');
 
     // Fermer le menu lorsque l'utilisateur clique sur une option
     dropdownContentUstensils.addEventListener('click', function (event) {

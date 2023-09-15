@@ -120,8 +120,8 @@ header {
 .dropdown-btnIngredient {
     background-color: #ffffff;
     color: #333;
-    padding: 0px 10px;
-    border-radius: 4px;
+    padding: 10px 10px 10px 10px;
+    border-radius: 10px;
     cursor: pointer;
     width: 150px;
     height: 40px;
@@ -138,8 +138,8 @@ header {
 .dropdown-btnAppareils {
     background-color: #ffffff;
     color: #333;
-    padding: 0px 10px;
-    border-radius: 4px;
+    padding: 10px 10px 10px 10px;
+    border-radius: 10px;
     cursor: pointer;
     width: 150px;
     height: 40px;
@@ -154,8 +154,8 @@ header {
 .dropdown-btnUstensiles {
     background-color: #ffffff;
     color: #333;
-    padding: 0px 10px;
-    border-radius: 4px;
+    padding: 10px 10px 10px 10px;
+    border-radius: 10px;
     cursor: pointer;
     width: 150px;
     height: 40px;
@@ -232,19 +232,23 @@ header {
 .containOptionIngredient {
     width: 200px;
     margin-left: 50px;
+    margin-right: 40px;
     position: relative;
 }
 .displayOptionIngredient {
     display: flex;
-    justify-content: center;
-    flex-direction: column;
-    width: 150px;
+    justify-content: space-between;
+    align-items: center;
+    flex-direction: row-reverse;
     height: 40px;
-    padding: 0px 10px;
-    border-radius: 4px;
+    width: 80%;
+    padding: 10px 10px 10px 10px;
+    border-radius: 10px;
     margin-top: 15px;
-    background-color: #ffc400;
-    text-align: left;
+    background-color: #ffc228;
+    font-weight: 500;
+    font-family: 'Manrope', sans-serif;
+    
 }
 
 
@@ -252,19 +256,22 @@ header {
 .containOptionAppareils {
     width: 200px;
     margin-left: 5px;
+    margin-right: 40px;
     position: relative;
 }
 .displayOptionAppareil {
     display: flex;
-    text-align: left;
-    justify-content: center;
-    flex-direction: column;
-    width: 150px;
+    justify-content: space-between;
+    align-items: center;
+    flex-direction: row-reverse;
     height: 40px;
-    padding: 0px 10px;
-    border-radius: 4px;
+    width: 80%;
+    padding: 10px 10px 10px 10px;
+    border-radius: 10px;
     margin-top: 15px;
-    background-color: #ffc400;
+    background-color: #ffc228;
+    font-weight: 500;
+    font-family: 'Manrope', sans-serif;
 }
 
 
@@ -276,26 +283,29 @@ header {
     justify-content: left;
     flex-direction: column;
     width: 200px;
-    margin-right: 10px;
+    margin-left: 5px;
 }
 .displayOptionUstensiles {
     display: flex;
-    text-align: left;
-    justify-content: center;
-    flex-direction: column;
-    width: 150px;
+    justify-content: space-between;
+    align-items: center;
+    flex-direction: row-reverse;
     height: 40px;
-    padding: 0px 10px;
-    border-radius: 4px;
+    width: 80%;
+    padding: 10px 10px 10px 10px;
+    border-radius: 10px;
     margin-top: 15px;
-    background-color: #ffc400;
+    background-color: #ffc228;
+    font-weight: 500;
+    font-family: 'Manrope', sans-serif;
 }
 
 
 .iconeCroixOption {
     font-size: 20px;
-    color: red;
+    color: rgb(0, 0, 0);
     cursor: pointer;
+    margin-right: 10px;
 }
 
 
@@ -314,14 +324,11 @@ header {
 }
 
 .textTotalRecettes {
-    position: absolute;
-    font-weight: 100;
     font-family: 'Anton', sans-serif;
-    top: 700px;
-    right: 0;
-    margin-top: 30px;
-    font-size: 25px;
-    margin-right: 30px;
+    position: absolute;
+    right: 5%;
+    font-size: x-large;
+
 }
 
 .recettesCard {
