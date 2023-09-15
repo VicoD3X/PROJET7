@@ -1,10 +1,18 @@
+// -------------------------------------------------------------------------------------------------
+// -------------- Récupération des données utilisable dans le code script.js  ----------------------
+// -------------------------------------------------------------------------------------------------
+
+
+// RECUPERATION DES RECETTES NON FILTREES (pour affichage de toutes les recettes)
 function getListeRecette() {
   return recipes;
 }
 
 
 
+// RECUPERATION DE LA LISTE DES USTENSILES 
 function getListeUstensiles() {
+
   const recettesListe = getListeRecette();
   const ustensilesListe = [];
 
@@ -21,15 +29,14 @@ function getListeUstensiles() {
     }
   }
 }
-
 getListeUstensiles();
 
 
 
 
-
-
+// RECUPERATION DE LA LISTE DES APPAREILS
 function getListeAppareils() {
+
   const recettesListe = getListeRecette();
   const appareilsListe = [];
 
@@ -41,16 +48,16 @@ function getListeAppareils() {
       appareilsListe.push(appareil);
     }
   }
-
   return appareilsListe;
 }
- 
 getListeAppareils();
 
 
 
 
+// RECUPERATION DE LA LISTE DES INGREDIENTS
 function getIngredients() {
+
   const recettesListe = getListeRecette();
   const ingredientsList = [];
 
@@ -60,20 +67,18 @@ function getIngredients() {
     for (let j = 0; j < LesIngredientsDetail.ingredients.length; j++) {
       const ingredient = LesIngredientsDetail.ingredients[j];
       const ingredientName = ingredient.ingredient;
-
       ingredientsList.push(ingredientName);
     }
   }
 }
-
 getIngredients();
 
 
 
-// DAVID (?) pour GetQuantities
 
-
+// RECUPERATION DE LA LISTE DES QUANTITES D'INGREDIENTS
 function getQuantities() {
+
   const recettesListe = getListeRecette();
   const ingredientsQuantities = {};
 
@@ -88,20 +93,19 @@ function getQuantities() {
       if (!ingredientsQuantities.hasOwnProperty(ingredientName)) {
         ingredientsQuantities[ingredientName] = 0;
       }
-
       ingredientsQuantities[ingredientName] += ingredientQuantity;
+
     }
   }
 }
-
 getQuantities();
 
 
 
 
-
-
+// RECUPERATION DE LA LISTE DES UNITES D'INGREDIENTS
 function getUnits() {
+  
   const recettesListe = getListeRecette();
   const unitsList = [];
 
@@ -111,12 +115,10 @@ function getUnits() {
     for (let j = 0; j < LesIngredientsDetail.ingredients.length; j++) {
       const ingredient = LesIngredientsDetail.ingredients[j];
       const ingredientUnit = ingredient.unit;
-
       unitsList.push(ingredientUnit);
     }
   }
 }
-
 getUnits();
 
 

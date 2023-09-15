@@ -1,10 +1,15 @@
+
+
+/*_________________________________________________________________________ */
+/* ------------- Styles du header et de la barre de recherche ------------- */
+/*_________________________________________________________________________ */
+
 body {
     font-family: "Maven Pro", Arial, Helvetica, sans-serif;
     margin: 0;
     background-color: #c4c4c4;
 }
 
-/* GESTION DU HEADER EN CSS */
 
 header {
     display: flex;
@@ -22,6 +27,7 @@ header {
     background-position: center;
 }
 
+
 .titreCorpo {
     display: flex;
     position: absolute;
@@ -32,16 +38,13 @@ header {
     font-size: 35px;
     color: white;
 }
-
 .titreCorpo span {
     margin-right: 10px;
 }
-
 .titreCorpo i {
     font-size: 26px;
     margin-bottom: 12px;
 }
-
 .titreCentral {
     display: flex;
     width: auto;
@@ -52,7 +55,6 @@ header {
     align-items: center;
     margin-bottom: 30px;
 }
-
 .titreCentral span {
     margin: 5px;
 }
@@ -63,7 +65,6 @@ header {
     position: relative;
     align-items: center;
 }
-
 .barreDeRecherche input[type="text"] {
     padding: 8px;
     border: 1px solid #ccc;
@@ -74,7 +75,8 @@ header {
     font-size: 20px;
     padding-left: 30px;
     font-weight: 100;
-}
+} 
+
 
 .containSearchIcone {
     position: absolute;
@@ -90,6 +92,7 @@ header {
     margin-right: 10px;
 }
 
+
 .iconeSearchBar {
     font-size: 30px;
     color: white;
@@ -98,16 +101,9 @@ header {
 
 
 
-
-
-/* GESTION DE LA PAGE EN CSS */
-
-
-
-
-
-
-
+/*_________________________________________________________________________ */
+/* ------------- Styles du menu déroulant ------------- */
+/*_________________________________________________________________________ */
 
 .dropdown {
     position: relative;
@@ -116,6 +112,7 @@ header {
     margin-right: 20px;
     margin-left: 50px;
 }
+
 
 .dropdown-btnIngredient {
     background-color: #ffffff;
@@ -134,7 +131,6 @@ header {
 }
 
 
-
 .dropdown-btnAppareils {
     background-color: #ffffff;
     color: #333;
@@ -150,6 +146,7 @@ header {
     font-weight: 600;
     font-family: 'Manrope', sans-serif;
 }
+
 
 .dropdown-btnUstensiles {
     background-color: #ffffff;
@@ -187,10 +184,10 @@ header {
     font-weight: 600;
 }
 
+
 .btn-rounded {
     border-radius: 4px 4px 0 0;
 }
-
 
 
 .search-bar-menu {
@@ -198,43 +195,40 @@ header {
     width: 140px;
 }
 
+
 .dropdown-content .option {
     color: #333;
     padding: 8px 12px;
     transition: background-color 0.2s ease;
 }
-
 .dropdown-content .option:hover {
     background-color: #ffc400;
 }
-
 .dropdown.open .dropdown-content {
     display: block;
 }
-
 .dropdown .arrow {
     margin-left: 5px;
     transition: transform 0.2s ease;
 }
-
 .dropdown.open .arrow {
     transform: rotate(180deg);
 }
+
 
 .containDisplayOption {
     display: flex;
     width: 100%;
     margin-top: -30px;
 }
-
-
-
 .containOptionIngredient {
     width: 200px;
     margin-left: 50px;
     margin-right: 40px;
     position: relative;
 }
+
+
 .displayOptionIngredient {
     display: flex;
     justify-content: space-between;
@@ -248,9 +242,7 @@ header {
     background-color: #ffc228;
     font-weight: 500;
     font-family: 'Manrope', sans-serif;
-    
 }
-
 
 
 .containOptionAppareils {
@@ -259,6 +251,8 @@ header {
     margin-right: 40px;
     position: relative;
 }
+
+
 .displayOptionAppareil {
     display: flex;
     justify-content: space-between;
@@ -275,9 +269,6 @@ header {
 }
 
 
-
-
-
 .containOptionUstensiles {
     display: flex;
     justify-content: left;
@@ -285,6 +276,8 @@ header {
     width: 200px;
     margin-left: 5px;
 }
+
+
 .displayOptionUstensiles {
     display: flex;
     justify-content: space-between;
@@ -313,6 +306,13 @@ header {
 
 
 
+
+
+
+/*_________________________________________________________________________ */
+/* ------------- Styles des recettes ------------- */
+/*_________________________________________________________________________ */
+
 .recettesContainer {
     display: flex;
     flex-wrap: wrap;
@@ -323,6 +323,7 @@ header {
     margin-left: -25px;
 }
 
+
 .textTotalRecettes {
     font-family: 'Anton', sans-serif;
     position: absolute;
@@ -331,6 +332,7 @@ header {
 
 }
 
+
 .recettesCard {
     display: flex;
     flex-wrap: wrap;
@@ -338,6 +340,7 @@ header {
     height: auto;
     margin-bottom: 30px;
 }
+
 
 .oneCardRecette {
     position: relative;
@@ -352,6 +355,7 @@ header {
     margin-bottom: 70px;
 }
 
+
 .timingTitleCard {
     position: absolute;
     top: 2%;
@@ -365,6 +369,7 @@ header {
     font-size: 17px;
 }
 
+
 .oneCardPicture {
     object-fit: cover;
     width: 100%;
@@ -374,14 +379,13 @@ header {
 }
 
 
-
-
 .cardTitre {
     font-family: 'Anton', sans-serif;
     font-size: 24px;
     color: black;
     margin-left: 15px;
 }
+
 
 .recetteText {
     display: flex;
@@ -390,6 +394,7 @@ header {
     width: 90%;
     height: auto;
 }
+
 
 .cardLightTitre {
     color: grey;
@@ -400,6 +405,7 @@ header {
     width: 20px;
     margin-bottom: 35px;
 }
+
 
 .recettePara {
     margin-top: -20px;
@@ -414,9 +420,6 @@ header {
 }
 
 
-
-/* ZONE A PATCH (ingredient) */
-
 .recetteIngredient {
     display: flex;
     flex-wrap: wrap;
@@ -425,6 +428,7 @@ header {
     height: 30%;
     margin-top: -35px;
 }
+
 
 .cardLightTitreIngredient {
     color: grey;
@@ -437,15 +441,18 @@ header {
     margin-bottom: 35px;
 }
 
+
 .oneIngredient {
     margin-left: 15px;
 }
+
 
 .titleIngredient {
     font-weight: 500;
     font-size: 17px;
     color: black;
 }
+
 
 .detailIngredient {
     color: grey;
