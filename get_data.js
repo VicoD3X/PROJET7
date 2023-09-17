@@ -105,7 +105,6 @@ getQuantities();
 
 // RECUPERATION DE LA LISTE DES UNITES D'INGREDIENTS
 function getUnits() {
-  
   const recettesListe = getListeRecette();
   const unitsList = [];
 
@@ -118,8 +117,12 @@ function getUnits() {
       unitsList.push(ingredientUnit);
     }
   }
+
+  return unitsList;
 }
-getUnits();
+
+const units = getUnits();
+
 
 
 

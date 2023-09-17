@@ -22,7 +22,7 @@ function afficherListeRecettes(listeRecette) {
     }
 
     let nbRecette = document.getElementById("nbRecette")
-    nbRecette.innerText = listeRecette.length 
+    nbRecette.innerText = listeRecette.length
 }
 
 
@@ -114,16 +114,21 @@ let listeRecette = getListeRecette();
 let listeIngredients = getIngredients();
 
 searchBar.addEventListener('input', function (event) {
+
+    // Stocke la valeur saisie dans la barre de recherche dans la variable `texteSaisie`.
+    // La valeur est convertie en minuscules pour faciliter la comparaison avec les ingrédients.
     let texteSaisie = event.target.value.toLowerCase();
 
+    // La fonction `filter()` est utilisée pour filtrer la liste des recettes en fonction de la valeur saisie dans la barre de recherche.
     let recettesFiltrees = listeRecette.filter(recette =>
         recette.name.toLowerCase().includes(texteSaisie) ||
         recette.description.toLowerCase().includes(texteSaisie) ||
+        // La fonction `some()` est utilisée pour tester si au moins un élément d'un tableau répond à une condition donnée.
         recette.ingredients.some(ingredient => ingredient.ingredient.toLowerCase().includes(texteSaisie))
     );
 
     afficherListeRecettes(recettesFiltrees)
-}); 
+});
 
 
 
@@ -153,7 +158,7 @@ window.onload = function MenuDeroulantGestion() {
         this.classList.toggle('btn-rounded');
 
         var dropdownContent = document.getElementById('dropdown-content-ingredient');
-        dropdownContent.innerHTML = ''; 
+        dropdownContent.innerHTML = '';
 
         let inputElementIngredient = document.createElement('input');
         inputElementIngredient.type = 'text';
@@ -164,8 +169,8 @@ window.onload = function MenuDeroulantGestion() {
 
 
         let listeRecette = listeRecetteFiltrer;
-        let ingredientsList = []; 
-    
+        let ingredientsList = [];
+
         for (let j = 0; j < listeRecette.length; j++) {
             const recette = listeRecette[j];
             for (let i = 0; i < recette.ingredients.length; i++) {
@@ -223,6 +228,7 @@ window.onload = function MenuDeroulantGestion() {
             ingredientBtn.classList.remove('btn-rounded');
 
             if (!listeIngredientCliquer.includes(target.innerText.trim())) {
+                // La méthode `trim()` renvoie une nouvelle chaîne de caractères sans les espaces en début et en fin.
                 listeIngredientCliquer.push(target.innerText.trim())
                 afficherOptions()
 
@@ -323,6 +329,7 @@ window.onload = function MenuDeroulantGestion() {
             appareilsBtn.classList.remove('btn-rounded');
 
             if (!listeAppareilCliquer.includes(target.innerText.trim())) {
+                // La méthode `trim()` renvoie une nouvelle chaîne de caractères sans les espaces en début et en fin.
                 listeAppareilCliquer.push(target.innerText.trim())
                 afficherOptions()
 
@@ -351,7 +358,7 @@ window.onload = function MenuDeroulantGestion() {
         this.classList.toggle('btn-rounded');
 
         var dropdownContentUstensils = document.getElementById('dropdown-content-ustensils');
-        dropdownContentUstensils.innerHTML = ''; 
+        dropdownContentUstensils.innerHTML = '';
 
         let inputElementUstensils = document.createElement('input');
         inputElementUstensils.type = 'text';
@@ -361,7 +368,7 @@ window.onload = function MenuDeroulantGestion() {
         dropdownContentUstensils.appendChild(inputElementUstensils);
 
         let listeRecette = listeRecetteFiltrer;
-        let ustensilsList = []; 
+        let ustensilsList = [];
 
         for (let j = 0; j < listeRecette.length; j++) {
             const recette = listeRecette[j];
@@ -420,6 +427,7 @@ window.onload = function MenuDeroulantGestion() {
             ustensilesBtn.classList.remove('btn-rounded');
 
             if (!listeUstensilesCliquer.includes(target.innerText.trim())) {
+                // La méthode `trim()` renvoie une nouvelle chaîne de caractères sans les espaces en début et en fin.
                 listeUstensilesCliquer.push(target.innerText.trim())
                 afficherOptions()
 
@@ -436,7 +444,7 @@ window.onload = function MenuDeroulantGestion() {
 
 
 
-    
+
 
     // -------------- ZONE 5 : Gestion & Géneration des Options de Filtrage Dynamique ----------------------
 
@@ -456,7 +464,7 @@ window.onload = function MenuDeroulantGestion() {
             containOptionAppareils.appendChild(displayOptionAppareil);
 
             let iconeCroixOption = document.createElement('i');
-            iconeCroixOption.id = 'iconeCroixOption'; 
+            iconeCroixOption.id = 'iconeCroixOption';
             iconeCroixOption.classList.add('iconeCroixOption', 'fas', 'fa-times');
             displayOptionAppareil.appendChild(iconeCroixOption);
 
@@ -464,7 +472,7 @@ window.onload = function MenuDeroulantGestion() {
             labelAppareil.innerText = listeAppareilCliquer[i];
             displayOptionAppareil.appendChild(labelAppareil);
 
-            let isClosed = false; 
+            let isClosed = false;
 
 
             iconeCroixOption.addEventListener('click', function (event) {
@@ -500,7 +508,7 @@ window.onload = function MenuDeroulantGestion() {
             labelIngredient.innerText = listeIngredientCliquer[i];
             displayOptionIngredient.appendChild(labelIngredient);
 
-            let isClosed = false; 
+            let isClosed = false;
 
 
             iconeCroixOption.addEventListener('click', function (event) {
@@ -535,7 +543,7 @@ window.onload = function MenuDeroulantGestion() {
             labelUstensiles.innerText = listeUstensilesCliquer[i];
             displayOptionUstensiles.appendChild(labelUstensiles);
 
-            let isClosed = false; 
+            let isClosed = false;
 
 
             iconeCroixOption.addEventListener('click', function (event) {
@@ -584,7 +592,7 @@ function filtrer() {
 
 
 
-// FILTRAGE PAR APPAREILS
+// FILTRAGE PAR APPAREIL
 
 function filtrerParAppareil(listeRecette) {
 
@@ -613,7 +621,7 @@ function filtrerParAppareil(listeRecette) {
 
 
 
-// FILTRAGE PAR INGREDIENTS
+// FILTRAGE PAR INGREDIENT
 
 function filtrerParIngredient(listeRecette) {
 
@@ -650,7 +658,7 @@ function filtrerParIngredient(listeRecette) {
 
 
 
-// FILTRAGE PAR USTENSILES
+// FILTRAGE PAR USTENSILE
 
 function filtrerParUstensiles(listeRecette) {
 
