@@ -1,29 +1,28 @@
- 
- <!--  -->
- <!-- En-tête HTML et Liens de Ressources Externes -->
- <!--  -->
+<!--  -->
+<!-- En-tête HTML et Liens de Ressources Externes -->
+<!--  -->
 
 <!DOCTYPE html>
 <html lang="FR">
 
 <head>
-  <meta charset="utf-8">
-  <link rel="stylesheet" href="style.css">
-  <title>Projet 7</title>
-  <script src="https://kit.fontawesome.com/43f543c243.js" crossorigin="anonymous"></script>
-  <script src="recipes.js" defer></script>
-  <script src="get_data.js" defer></script>
-  <script src="script.js" defer></script>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Maven+Pro:wght@400;500;700&display=swap" rel="stylesheet">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Anton&family=Lexend&display=swap" rel="stylesheet">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Anton&family=Lexend&family=Manrope&display=swap"
-    rel="stylesheet">
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="style.css">
+    <title>Projet 7</title>
+    <script src="https://kit.fontawesome.com/43f543c243.js" crossorigin="anonymous"></script>
+    <script src="recipes.js" defer></script>
+    <script src="get_data.js" defer></script>
+    <script src="script.js" defer></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Maven+Pro:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Anton&family=Lexend&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Anton&family=Lexend&family=Manrope&display=swap"
+        rel="stylesheet">
 </head>
 
 
@@ -31,81 +30,86 @@
 
 <body>
 
-<!--  -->
-<!-- Construction du header -->
-<!--  -->
+    <!--  -->
+    <!-- Construction du header -->
+    <!--  -->
 
-  <header>
-    <div class="titreCorpo">
-      <span>LES PETITS PLATS</span> <i class="fa-regular fa-circle-dot"></i>
+    <header>
+        <div class="titreCorpo">
+            <span>LES PETITS PLATS</span> <i class="fa-regular fa-circle-dot"></i>
+        </div>
+        <div class="titreCentral">
+            <span>CHERCHEZ PARMIS PLUS DE 1500 RECETTES</span>
+            <span>DU QUOTIDIEN, SIMPLES ET DÉLICIEUSES</span>
+        </div>
+
+        <div class="barreDeRecherche">
+            <input type="text" id="search-bar" class="mainSearchBar"
+                placeholder="Rechercher une recette, un ingrédient...">
+            <div class="containSearchIcone">
+                <i class=" iconeSearchBar fas fa-search"></i>
+            </div>
+        </div>
+    </header>
+
+
+
+
+    <!--  -->
+    <!-- Construction du corps de la page -->
+    <!--  -->
+
+    <div class="containDropdown" id="containDropdown">
+        <span class="textTotalRecettes"><span id="nbRecette">1500</span> recettes</span>
+
+
+        <div class="dropdown">
+            <div class="dropdown-btnIngredient">Ingrédients <span class="arrow"><i
+                        class="fas fa-chevron-down"></i></span>
+            </div>
+            <div id="dropdown-content-ingredient" class="dropdown-content">
+
+                <!-- GERER VIA JS -->
+
+            </div>
+        </div>
+
+
+        <div class="dropdown">
+            <div class="dropdown-btnAppareils">Appareils <span class="arrow"><i class="fas fa-chevron-down"></i></span>
+            </div>
+            <div id="dropdown-content-appareils" class="dropdown-content">
+                <!-- GERER VIA JS -->
+            </div>
+        </div>
+
+
+        <div class="dropdown">
+            <div class="dropdown-btnUstensiles">Ustensiles <span class="arrow"><i
+                        class="fas fa-chevron-down"></i></span>
+            </div>
+            <div id="dropdown-content-ustensils" class="dropdown-content">
+                <!-- GERER VIA JS -->
+            </div>
+        </div>
+
+
+        <div class="containDisplayOption">
+            <div class="containOptionIngredient" id="containOptionIngredient">
+                <!-- GERER VIA JS -->
+            </div>
+            <div class="containOptionAppareils" id="containOptionAppareils">
+                <!-- GERER VIA JS -->
+            </div>
+            <div class="containOptionUstensiles" id="containOptionUstensiles">
+                <!-- GERER VIA JS -->
+            </div>
+        </div>
     </div>
-    <div class="titreCentral">
-      <span>CHERCHEZ PARMIS PLUS DE 1500 RECETTES</span>
-      <span>DU QUOTIDIEN, SIMPLES ET DÉLICIEUSES</span>
     </div>
-
-    <div class="barreDeRecherche">
-      <input type="text" id="search-bar" class="mainSearchBar" placeholder="Rechercher une recette, un ingrédient...">
-      <div class="containSearchIcone">
-        <i class=" iconeSearchBar fas fa-search"></i>
-      </div>
-    </div>
-  </header>
-
-
-
-
-  <!--  -->
-  <!-- Construction du corps de la page -->
-  <!--  -->
-
-  <div class="containDropdown" id="containDropdown">
-    <span class="textTotalRecettes"><span id="nbRecette">1500</span> recettes</span>
-    
-    <div class="dropdown">
-      <div class="dropdown-btnIngredient">Ingrédients <span class="arrow"><i class="fas fa-chevron-down"></i></span>
-      </div>
-      <div id="dropdown-content-ingredient" class="dropdown-content">
-
-        <!-- GERER VIA JS -->
-
-      </div>
+    <!-- GERER VIA JS -->
+    <div class="recettesContainer" id="recettesContainer">
     </div>
 
 
-    <div class="dropdown">
-      <div class="dropdown-btnAppareils">Appareils <span class="arrow"><i class="fas fa-chevron-down"></i></span></div>
-      <div id="dropdown-content-appareils" class="dropdown-content">
-        <!-- GERER VIA JS -->
-      </div>
-    </div>
-
-
-    <div class="dropdown">
-      <div class="dropdown-btnUstensiles">Ustensiles <span class="arrow"><i class="fas fa-chevron-down"></i></span>
-      </div>
-      <div id="dropdown-content-ustensils" class="dropdown-content">
-        <!-- GERER VIA JS -->
-      </div>
-    </div>
-
-
-    <div class="containDisplayOption">
-      <div class="containOptionIngredient" id="containOptionIngredient">
-        <!-- GERER VIA JS -->
-      </div>
-      <div class="containOptionAppareils" id="containOptionAppareils">
-        <!-- GERER VIA JS -->
-      </div>
-      <div class="containOptionUstensiles" id="containOptionUstensiles">
-        <!-- GERER VIA JS -->
-      </div>
-    </div>
-  </div>
-  </div>
-  <!-- GERER VIA JS -->
-  <div class="recettesContainer" id="recettesContainer">
-  </div>
-
-  
 </body>

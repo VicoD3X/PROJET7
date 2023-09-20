@@ -56,24 +56,24 @@ getListeAppareils();
 
 
 // RECUPERATION DE LA LISTE DES INGREDIENTS
-function getIngredients() {
+function getIngredients(listeRecette) {
+    const ingredientsList = [];
 
-  const recettesListe = getListeRecette();
-  const ingredientsList = [];
-
-  for (let i = 0; i < recettesListe.length; i++) {
-    const LesIngredientsDetail = recettesListe[i];
-
-    for (let j = 0; j < LesIngredientsDetail.ingredients.length; j++) {
-      const ingredient = LesIngredientsDetail.ingredients[j];
-      const ingredientName = ingredient.ingredient;
-      ingredientsList.push(ingredientName);
+    for (let j = 0; j < listeRecette.length; j++) {
+        const recette = listeRecette[j];
+        for (let i = 0; i < recette.ingredients.length; i++) {
+            const ingredient = recette.ingredients[i];
+            if (!ingredientsList.includes(ingredient.ingredient)) {
+                ingredientsList.push(ingredient.ingredient);
+            }
+        }
     }
-  }
+  return ingredientsList
 }
-getIngredients();
+//getIngredients();
 
-
+// function getUstentil(listeRecette) {
+// ....
 
 
 // RECUPERATION DE LA LISTE DES QUANTITES D'INGREDIENTS

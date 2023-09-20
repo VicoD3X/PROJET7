@@ -3,7 +3,7 @@
 
 // -------------- ZONE 1 : Gestion de l'affichage des recettes  ----------------------
 
-var recettesContainer = document.getElementById("recettesContainer")
+let recettesContainer = document.getElementById("recettesContainer")
 recettesContainer.innerHTML = ''
 
 let listeAppareilCliquer = []
@@ -111,7 +111,7 @@ afficherListeRecettes(getListeRecette())
 
 let searchBar = document.getElementById("search-bar");
 let listeRecette = getListeRecette();
-let listeIngredients = getIngredients();
+//let listeIngredients = getIngredients();
 
 searchBar.addEventListener('input', function (event) {
 
@@ -132,7 +132,39 @@ searchBar.addEventListener('input', function (event) {
 
 
 
+// ZONE 3.5 : Fonctions utiles pour gérer le dropdown. 
+function updateDropdown(dropdownContent, searchTerm) {
+    const options = dropdownContent.querySelectorAll('.option');
 
+    options.forEach(option => {
+        const ingredient = option.textContent;
+        if (ingredient.toLowerCase().includes(searchTerm.toLowerCase())) {
+            option.style.display = 'block';
+        } else {
+            option.style.display = 'none';
+        }
+    });
+}
+
+function toogleDropdownCss(element, dropdownContent, type){
+    let arrowIcon = element.querySelector('i');
+
+    dropdownContent.style.display = dropdownContent.style.display === 'block' ? 'none' : 'block';
+    arrowIcon.classList.toggle('fa-chevron-down');
+    arrowIcon.classList.toggle('fa-chevron-up');
+    element.classList.toggle('btn-rounded');
+
+    dropdownContent.innerHTML = '';
+
+    console.log( dropdownContent);
+
+    let inputElementIngredient = document.createElement('input');
+    inputElementIngredient.type = 'text';
+    inputElementIngredient.placeholder = 'Rechercher...';
+    inputElementIngredient.id = `search-bar-menu-${type}`;
+    inputElementIngredient.classList.add("search-bar-menu");
+    dropdownContent.appendChild(inputElementIngredient);
+}
 
 // -------------- ZONE 4 : Initialisation des Menus Déroulants ----------------------
 
@@ -141,80 +173,34 @@ window.onload = function MenuDeroulantGestion() {
     let appareilsBtn = document.querySelector('.dropdown-btnAppareils');
     let ustensilesBtn = document.querySelector('.dropdown-btnUstensiles');
 
-
-
-
-
-
     // GESTION DU MENU DEROULANT INGREDIENTS
-
     ingredientBtn.addEventListener('click', function () {
         var dropdownContent = this.nextElementSibling;
-        let arrowIcon = this.querySelector('i');
 
-        dropdownContent.style.display = dropdownContent.style.display === 'block' ? 'none' : 'block';
-        arrowIcon.classList.toggle('fa-chevron-down');
-        arrowIcon.classList.toggle('fa-chevron-up');
-        this.classList.toggle('btn-rounded');
+        toogleDropdownCss(this, dropdownContent, "ingredient")
 
-        var dropdownContent = document.getElementById('dropdown-content-ingredient');
-        dropdownContent.innerHTML = '';
-
-        let inputElementIngredient = document.createElement('input');
-        inputElementIngredient.type = 'text';
-        inputElementIngredient.placeholder = 'Rechercher...';
-        inputElementIngredient.id = 'search-bar-menu-ingredient';
-        inputElementIngredient.classList.add("search-bar-menu");
-        dropdownContent.appendChild(inputElementIngredient);
-
-
-        let listeRecette = listeRecetteFiltrer;
-        let ingredientsList = [];
-
-        for (let j = 0; j < listeRecette.length; j++) {
-            const recette = listeRecette[j];
-            for (let i = 0; i < recette.ingredients.length; i++) {
-                const ingredient = recette.ingredients[i];
-                if (!ingredientsList.includes(ingredient.ingredient)) {
-                    ingredientsList.push(ingredient.ingredient);
-                    let ingredientChaine = `
-                    <div class='option'>
-                        ${ingredient.ingredient}
-                    </div>
-                `;
-                    dropdownContent.innerHTML += ingredientChaine;
-                }
-            }
+        //let listeRecette = listeRecetteFiltrer;
+        let ingredientsList = getIngredients(listeRecetteFiltrer);
+        for (ingredient of ingredientsList) {
+            let ingredientChaine = `
+                <div class='option'>
+                    ${ingredient}
+                </div>
+            `;
+            dropdownContent.innerHTML += ingredientChaine;
         }
-
-
-
-
 
         var searchBarIngredients = document.getElementById("search-bar-menu-ingredient")
         searchBarIngredients.addEventListener('click', function (event) {
             event.stopPropagation();
         });
 
-        function updateDropdown(searchTerm) {
-            const options = dropdownContent.querySelectorAll('.option');
-
-            options.forEach(option => {
-                const ingredient = option.textContent;
-                if (ingredient.toLowerCase().includes(searchTerm.toLowerCase())) {
-                    option.style.display = 'block';
-                } else {
-                    option.style.display = 'none';
-                }
-            });
-        }
-
+    
         const searchBar = document.getElementById('search-bar-menu-ingredient');
         searchBar.addEventListener('input', function () {
-            updateDropdown(this.value);
+            updateDropdown(dropdownContent, this.value);
         });
     });
-
 
     var dropdownContentIngredient = document.getElementById('dropdown-content-ingredient');
     dropdownContentIngredient.addEventListener('click', function (event) {
@@ -239,32 +225,11 @@ window.onload = function MenuDeroulantGestion() {
         }
     });
 
-
-
-
-
-
-
     // GESTION DU MENU DEROULANT APPAREILS
-
     appareilsBtn.addEventListener('click', function () {
         var dropdownContentAppareils = this.nextElementSibling;
-        let arrowIconAppareils = this.querySelector('i');
 
-        dropdownContentAppareils.style.display = dropdownContentAppareils.style.display === 'block' ? 'none' : 'block';
-        arrowIconAppareils.classList.toggle('fa-chevron-down');
-        arrowIconAppareils.classList.toggle('fa-chevron-up');
-        this.classList.toggle('btn-rounded');
-
-        var dropdownContentAppareils = document.getElementById('dropdown-content-appareils');
-        dropdownContentAppareils.innerHTML = ''; // Vide le contenu existant
-
-        let inputElementAppareils = document.createElement('input');
-        inputElementAppareils.type = 'text';
-        inputElementAppareils.placeholder = 'Rechercher...';
-        inputElementAppareils.id = 'search-bar-menu-appareils';
-        inputElementAppareils.classList.add("search-bar-menu");
-        dropdownContentAppareils.appendChild(inputElementAppareils);
+        toogleDropdownCss(this, dropdownContentAppareils, "appareils")
 
         let listeRecette = listeRecetteFiltrer;
         let appareilsList = [];
@@ -287,35 +252,16 @@ window.onload = function MenuDeroulantGestion() {
             }
         }
 
-
-
-
-
-
         let searchBarAppareils = document.getElementById("search-bar-menu-appareils")
         searchBarAppareils.addEventListener('click', function (event) {
             event.stopPropagation();
         });
 
-        function updateDropdown(searchTerm) {
-            const options = dropdownContentAppareils.querySelectorAll('.option');
-
-            options.forEach(option => {
-                const appareil = option.textContent;
-                if (appareil.toLowerCase().includes(searchTerm.toLowerCase())) {
-                    option.style.display = 'block';
-                } else {
-                    option.style.display = 'none';
-                }
-            });
-        }
-
         const searchBar = document.getElementById('search-bar-menu-appareils');
         searchBar.addEventListener('input', function () {
-            updateDropdown(this.value);
+            updateDropdown(dropdownContentAppareils, this.value);
         });
     });
-
 
     var dropdownContentAppareils = document.getElementById('dropdown-content-appareils');
     dropdownContentAppareils.addEventListener('click', function (event) {
@@ -341,31 +287,11 @@ window.onload = function MenuDeroulantGestion() {
         }
     });
 
-
-
-
-
-
     // GESTION DU MENU DEROULANT USTENSILES
-
     ustensilesBtn.addEventListener('click', function () {
         var dropdownContentUstensils = this.nextElementSibling;
-        let arrowIconUstensils = this.querySelector('i');
-
-        dropdownContentUstensils.style.display = dropdownContentUstensils.style.display === 'block' ? 'none' : 'block';
-        arrowIconUstensils.classList.toggle('fa-chevron-down');
-        arrowIconUstensils.classList.toggle('fa-chevron-up');
-        this.classList.toggle('btn-rounded');
-
-        var dropdownContentUstensils = document.getElementById('dropdown-content-ustensils');
-        dropdownContentUstensils.innerHTML = '';
-
-        let inputElementUstensils = document.createElement('input');
-        inputElementUstensils.type = 'text';
-        inputElementUstensils.placeholder = 'Rechercher...';
-        inputElementUstensils.id = 'search-bar-menu-ustensils';
-        inputElementUstensils.classList.add("search-bar-menu");
-        dropdownContentUstensils.appendChild(inputElementUstensils);
+       
+        toogleDropdownCss(this, dropdownContentUstensils, "ustensils")
 
         let listeRecette = listeRecetteFiltrer;
         let ustensilsList = [];
@@ -395,22 +321,9 @@ window.onload = function MenuDeroulantGestion() {
             event.stopPropagation();
         });
 
-        function updateDropdown(searchTerm) {
-            const options = dropdownContentUstensils.querySelectorAll('.option');
-
-            options.forEach(option => {
-                const ustensil = option.textContent;
-                if (ustensil.toLowerCase().includes(searchTerm.toLowerCase())) {
-                    option.style.display = 'block';
-                } else {
-                    option.style.display = 'none';
-                }
-            });
-        }
-
         const searchBar = document.getElementById('search-bar-menu-ustensils');
         searchBar.addEventListener('input', function () {
-            updateDropdown(this.value);
+            updateDropdown(dropdownContentUstensils, this.value);
         });
     });
 
@@ -619,13 +532,9 @@ function filtrerParAppareil(listeRecette) {
 }
 
 
-
-
 // FILTRAGE PAR INGREDIENT
 
 function filtrerParIngredient(listeRecette) {
-
-
     const recettesFiltrees = [];
 
     for (let i = 0; i < listeRecette.length; i++) {
@@ -661,8 +570,6 @@ function filtrerParIngredient(listeRecette) {
 // FILTRAGE PAR USTENSILE
 
 function filtrerParUstensiles(listeRecette) {
-
-
     const recettesFiltrees = [];
 
     for (let i = 0; i < listeRecette.length; i++) {
@@ -692,6 +599,46 @@ function filtrerParUstensiles(listeRecette) {
     }
     return recettesFiltrees;
 }
+
+// function filtrerParType(listeRecette, listeItemCliquer, type) {
+//     const recettesFiltrees = [];
+
+//     for (let i = 0; i < listeRecette.length; i++) {
+//         const recette = listeRecette[i];
+//         let recetteValide = true;
+
+//         for (let j = 0; j < listeItemCliquer.length; j++) {
+//             let itemCourant = listeItemCliquer[j];
+//             let itemTrouve = false;
+
+//             if (type == "ingredient") {
+//                 itemTrouve = isIngredientDansRecette(recette, itemCourant)
+//             } else if (type == "ustensile")
+//                 itemTrouve = isUstensileTrouveDansRecette(recette, itemCourant)
+//             }
+//             // for (let k = 0; k < recette.ingredients.length; k++) {
+//             //     const ingredients = recette.ingredients[k];
+
+//             //     if (ingredients.ingredient == ingredientCourant) {
+//             //         ingredientTrouve = true;
+//             //         break;
+//             //     }
+//             // }
+//             if (ingredientTrouve == false) {
+//                 recetteValide = false;
+//                 break;
+//             }
+//         }
+//         if (recetteValide) {
+//             recettesFiltrees.push(recette);
+//         }
+//     }
+//     return recettesFiltrees;
+// }
+
+// function isIngredientDansRecette(recette, ingredient)
+// function isUstensileDansRecette(recette, ustensiel)
+
 
 
 
