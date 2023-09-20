@@ -28,6 +28,7 @@ function getListeUstensiles() {
       }
     }
   }
+  return ustensilesListe;
 }
 getListeUstensiles();
 
