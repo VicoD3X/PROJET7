@@ -390,7 +390,6 @@ window.onload = function MenuDeroulantGestion() {
                 }
 
                 let listeRecetteFiltrer = filtrerParType(listeRecette, listeCliquer, type); 
-                
                 afficherListeRecettes(listeRecetteFiltrer);
             });
         }

@@ -229,7 +229,7 @@ header {
 }
 
 
-.displayOptionIngredient {
+.displayOptioningredient {
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -253,7 +253,7 @@ header {
 }
 
 
-.displayOptionAppareil {
+.displayOptionappareil {
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -278,7 +278,7 @@ header {
 }
 
 
-.displayOptionUstensiles {
+.displayOptionustensile {
     display: flex;
     justify-content: space-between;
     align-items: center;
