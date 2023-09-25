@@ -10,6 +10,7 @@ let listeAppareilCliquer = []
 let listeIngredientCliquer = []
 let listeUstensilesCliquer = []
 let listeRecetteFiltrer = []
+let texteSaisie = ''
 
 function afficherListeRecettes(listeRecette) {
     console.log(listeRecette);
@@ -109,15 +110,9 @@ afficherListeRecettes(getListeRecette())
 
 // -------------- ZONE 3 : Gestion de la barre de recherche centrale ----------------------
 
-let searchBar = document.getElementById("search-bar");
-let listeRecette = getListeRecette();
-//let listeIngredients = getIngredients();
 
-searchBar.addEventListener('input', function (event) {
 
-    // Stocke la valeur saisie dans la barre de recherche dans la variable `texteSaisie`.
-    // La valeur est convertie en minuscules pour faciliter la comparaison avec les ingrédients.
-    let texteSaisie = event.target.value.toLowerCase();
+function filtrerParText(listeRecette) {
 
     // La fonction `filter()` est utilisée pour filtrer la liste des recettes en fonction de la valeur saisie dans la barre de recherche.
     let recettesFiltrees = listeRecette.filter(recette =>
@@ -126,10 +121,8 @@ searchBar.addEventListener('input', function (event) {
         // La fonction `some()` est utilisée pour tester si au moins un élément d'un tableau répond à une condition donnée.
         recette.ingredients.some(ingredient => ingredient.ingredient.toLowerCase().includes(texteSaisie))
     );
-
-    afficherListeRecettes(recettesFiltrees)
-});
-
+    return recettesFiltrees
+}
 
 
 // ZONE 3.5 : Fonctions utiles pour gérer le dropdown. 
@@ -169,6 +162,22 @@ function toogleDropdownCss(element, dropdownContent, type) {
 // -------------- ZONE 4 : Initialisation des Menus Déroulants ----------------------
 
 window.onload = function MenuDeroulantGestion() {
+
+    // -------------- ZONE 4.5 : Gestion de la barre de recherche centrale ----------------------
+    let searchBar = document.getElementById("search-bar");
+    //let listeIngredients = getIngredients();
+
+    searchBar.addEventListener('input', (event) => {
+
+        // Stocke la valeur saisie dans la barre de recherche dans la variable `texteSaisie`.
+        // La valeur est convertie en minuscules pour faciliter la comparaison avec les ingrédients.
+        texteSaisie = event.target.value.toLowerCase();
+        let recettesFiltrees = filtrerTout()
+        afficherListeRecettes(recettesFiltrees)
+    });
+
+
+
     let ingredientBtn = document.querySelector('.dropdown-btnIngredient');
     let appareilsBtn = document.querySelector('.dropdown-btnAppareils');
     let ustensilesBtn = document.querySelector('.dropdown-btnUstensiles');
@@ -219,7 +228,8 @@ window.onload = function MenuDeroulantGestion() {
                 afficherOptions("ingredient", listeIngredientCliquer, containOptionIngredient)
 
                 console.log(listeIngredientCliquer);
-                let listeRecetteFiltrer = filtrerParType(listeRecette, listeIngredientCliquer, "ingredient")
+                //let listeRecetteFiltrer = filtrerParType(listeRecette, listeIngredientCliquer, "ingredient")
+                let listeRecetteFiltrer = filtrerTout()
                 afficherListeRecettes(listeRecetteFiltrer)
             }
         }
@@ -279,7 +289,8 @@ window.onload = function MenuDeroulantGestion() {
                 listeAppareilCliquer.push(target.innerText.trim())
                 afficherOptions("appareil", listeAppareilCliquer, containOptionAppareils)
 
-                let listeRecetteFiltrer = filtrerParType(listeRecette, listeAppareilCliquer, "appareil")
+                //let listeRecetteFiltrer = filtrerParType(listeRecette, listeAppareilCliquer, "appareil")
+                let listeRecetteFiltrer = filtrerTout()
                 console.log(listeRecetteFiltrer);
                 afficherListeRecettes(listeRecetteFiltrer)
 
@@ -344,7 +355,8 @@ window.onload = function MenuDeroulantGestion() {
                 listeUstensilesCliquer.push(target.innerText.trim())
                 afficherOptions("ustensile", listeUstensilesCliquer, containOptionUstensiles)
 
-                let listeRecetteFiltrer = filtrerParType(listeRecette, listeUstensilesCliquer, "ustensile")
+                //let listeRecetteFiltrer = filtrerParType(listeRecette, listeUstensilesCliquer, "ustensile")
+                let listeRecetteFiltrer = filtrerTout()
                 console.log(listeRecetteFiltrer);
                 afficherListeRecettes(listeRecetteFiltrer)
             }
@@ -389,7 +401,8 @@ window.onload = function MenuDeroulantGestion() {
                     isClosed = true;
                 }
 
-                let listeRecetteFiltrer = filtrerParType(listeRecette, listeCliquer, type); 
+                // let listeRecetteFiltrer = filtrerParType(listeRecette, listeCliquer, type); 
+                let listeRecetteFiltrer = filtrerTout()
                 afficherListeRecettes(listeRecetteFiltrer);
             });
         }
@@ -407,132 +420,23 @@ window.onload = function MenuDeroulantGestion() {
 
 
 
-
-
-    //     function afficherOptions() {
-    //         containOptionAppareils.innerHTML = '';
-    //         containOptionIngredient.innerHTML = '';
-    //         containOptionUstensiles.innerHTML = '';
-
-
-
-
-    //         // GESTION DES OPTIONS APPAREILS
-
-    //         for (let i = 0; i < listeAppareilCliquer.length; i++) {
-    //             let displayOptionAppareil = document.createElement("div");
-    //             displayOptionAppareil.classList.add("displayOptionAppareil");
-    //             containOptionAppareils.appendChild(displayOptionAppareil);
-
-    //             let iconeCroixOption = document.createElement('i');
-    //             iconeCroixOption.id = 'iconeCroixOption';
-    //             iconeCroixOption.classList.add('iconeCroixOption', 'fas', 'fa-times');
-    //             displayOptionAppareil.appendChild(iconeCroixOption);
-
-    //             let labelAppareil = document.createElement('span');
-    //             labelAppareil.innerText = listeAppareilCliquer[i];
-    //             displayOptionAppareil.appendChild(labelAppareil);
-
-    //             let isClosed = false;
-
-
-    //             iconeCroixOption.addEventListener('click', function (event) {
-    //                 if (isClosed) {
-    //                     displayOptionAppareil.style.display = 'block';
-    //                     isClosed = false;
-    //                 } else {
-    //                     listeAppareilCliquer.splice(event.target.innerText, 1);
-    //                     displayOptionAppareil.style.display = 'none';
-    //                     isClosed = true;
-    //                 }
-
-    //                 let listeRecetteFiltrer = filtrerParType(listeRecette, listeAppareilCliquer, "appareil")
-    //                 console.log(listeRecetteFiltrer);
-    //                 afficherListeRecettes(listeRecetteFiltrer)
-    //             });
-    //         }
-
-
-
-    //         // GESTION DES OPTIONS INGREDIENTS
-
-    //         for (let i = 0; i < listeIngredientCliquer.length; i++) {
-    //             let displayOptionIngredient = document.createElement("div");
-    //             displayOptionIngredient.classList.add("displayOptionIngredient");
-    //             containOptionIngredient.appendChild(displayOptionIngredient);
-
-    //             let iconeCroixOption = document.createElement('i');
-    //             iconeCroixOption.classList.add('iconeCroixOption', 'fas', 'fa-times');
-    //             displayOptionIngredient.appendChild(iconeCroixOption);
-
-    //             let labelIngredient = document.createElement('span');
-    //             labelIngredient.innerText = listeIngredientCliquer[i];
-    //             displayOptionIngredient.appendChild(labelIngredient);
-
-    //             let isClosed = false;
-
-
-    //             iconeCroixOption.addEventListener('click', function (event) {
-    //                 if (isClosed) {
-    //                     displayOptionIngredient.style.display = 'block';
-    //                     isClosed = false;
-    //                 } else {
-    //                     listeIngredientCliquer.splice(event.target.innerText, 1);
-    //                     displayOptionIngredient.style.display = 'none';
-    //                     isClosed = true;
-    //                 }
-
-    //                 let listeRecetteFiltrer = filtrerParType(listeRecette, listeIngredientCliquer, "ingredient")
-    //                 afficherListeRecettes(listeRecetteFiltrer)
-    //             });
-    //         }
-
-
-
-    //         // GESTION DES OPTIONS USTENSILES
-
-    //         for (let i = 0; i < listeUstensilesCliquer.length; i++) {
-    //             let displayOptionUstensiles = document.createElement("div");
-    //             displayOptionUstensiles.classList.add("displayOptionUstensiles");
-    //             containOptionUstensiles.appendChild(displayOptionUstensiles);
-
-    //             let iconeCroixOption = document.createElement('i');
-    //             iconeCroixOption.classList.add('iconeCroixOption', 'fas', 'fa-times');
-    //             displayOptionUstensiles.appendChild(iconeCroixOption);
-
-    //             let labelUstensiles = document.createElement('span');
-    //             labelUstensiles.innerText = listeUstensilesCliquer[i];
-    //             displayOptionUstensiles.appendChild(labelUstensiles);
-
-    //             let isClosed = false;
-
-
-    //             iconeCroixOption.addEventListener('click', function (event) {
-    //                 if (isClosed) {
-    //                     displayOptionUstensiles.style.display = 'block';
-    //                     isClosed = false;
-    //                 } else {
-    //                     listeUstensilesCliquer.splice(event.target.innerText, 1);
-    //                     displayOptionUstensiles.style.display = 'none';
-    //                     isClosed = true;
-    //                 }
-
-    //                 let listeRecetteFiltrer = filtrerParType(listeRecette, listeUstensilesCliquer, "ustensile")
-    //                 afficherListeRecettes(listeRecetteFiltrer)
-    //             });
-    //         }
-    //     }
-    // };
-
-
-
-
-
-
-
-
-
     // -------------- ZONE 6 : Filtrage des Recettes selon les Critères Sélectionnés ----------------------
+
+    function filtrerTout() {
+        console.log("listeIngredientCliquer", listeIngredientCliquer);
+        console.log("listeAppareilCliquer", listeAppareilCliquer);
+        console.log("listeUstensilesCliquer", listeUstensilesCliquer);
+        let listeRecette = getListeRecette()
+        let listeRecetteFiltrer = filtrerParType(listeRecette, listeIngredientCliquer, "ingredient")
+        listeRecetteFiltrer = filtrerParType(listeRecetteFiltrer, listeAppareilCliquer, "appareil")
+        listeRecetteFiltrer = filtrerParType(listeRecetteFiltrer, listeUstensilesCliquer, "ustensile")
+        listeRecetteFiltrer = filtrerParText(listeRecetteFiltrer)
+        return listeRecetteFiltrer
+
+    }
+
+
+
 
     function filtrerParType(listeRecette, listeItemCliquer, type) {
         const recettesFiltrees = [];
@@ -576,17 +480,4 @@ window.onload = function MenuDeroulantGestion() {
         }
         return recettesFiltrees;
     }
-
-
-    function isIngredientDansRecette(recette, ingredient) {
-        return recette.ingredients.includes(ingredient);
-    }
-
-    function isUstensileDansRecette(recette, ustensile) {
-        return recette.ustensiles === ustensile;
-    }
-
-    function isAppareilDansRecette(recette, appareil) {
-        return recette.appliance === appareil;
-    } 
 }
